@@ -3,6 +3,7 @@ package net.gotev.speechdemo;
 import android.Manifest;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -143,7 +144,10 @@ public class MainActivity extends AppCompatActivity implements SpeechDelegate {
         text.setText(result);
 
         if (result.isEmpty()) {
-            Speech.getInstance().say(getString(R.string.repeat));
+            //Speech.getInstance().say(getString(R.string.repeat));
+            //onSpeakClick();
+            //runOnUiThread(() -> button.callOnClick());
+          new Handler().postDelayed(() -> button.callOnClick(), 500);
 
         } else {
             Speech.getInstance().say(result);

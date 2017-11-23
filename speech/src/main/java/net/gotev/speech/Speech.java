@@ -64,6 +64,11 @@ public class Speech {
             switch (status) {
                 case TextToSpeech.SUCCESS:
                     Logger.info(LOG_TAG, "TextToSpeech engine successfully started");
+
+                    mTextToSpeech.setOnUtteranceProgressListener(mTtsProgressListener);
+                    mTextToSpeech.setLanguage(mLocale);
+                    mTextToSpeech.setPitch(mTtsPitch);
+                    mTextToSpeech.setSpeechRate(mTtsRate);
                     break;
 
                 case TextToSpeech.ERROR:
@@ -287,10 +292,6 @@ public class Speech {
     private void initTts(Context context) {
         if (mTextToSpeech == null) {
             mTextToSpeech = new TextToSpeech(context.getApplicationContext(), mTttsInitListener);
-            mTextToSpeech.setOnUtteranceProgressListener(mTtsProgressListener);
-            mTextToSpeech.setLanguage(mLocale);
-            mTextToSpeech.setPitch(mTtsPitch);
-            mTextToSpeech.setSpeechRate(mTtsRate);
         }
     }
 
